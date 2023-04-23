@@ -1,0 +1,77 @@
+.document {
+  margin: 0;
+}
+
+.Footer {
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  /* position: static; */
+  width: 100%;
+  bottom: 0;
+}
+
+.firstFooter {
+  margin: 0 2em;
+  text-align: center;
+  vertical-align: top;
+  height: 100%;
+  line-height: 2em;
+  padding: 0 2%;
+}
+
+.secondFooter {
+  margin: 0 2em;
+  text-align: left;
+  vertical-align: top;
+  height: 100%;
+  line-height: 1.5em;
+}
+.thirdFooter {
+  margin: 0 2em;
+  text-align: left;
+  vertical-align: top;
+  height: 100%;
+  line-height: 1.5em;
+}
+
+.fourthFooter {
+  margin: 0 2em;
+  text-align: left;
+  vertical-align: top;
+  height: 100%;
+  line-height: 1.5em;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  font-size: 1em;
+  color: black;
+  margin: 0 0;
+}
+
+.BoldText {
+  font-weight: bold;
+  margin: 0;
+}
+
+.social {
+  display: flex;
+  flex-direction: row;
+}
+
+.social div {
+  margin: 0 2%;
+}
+
+@media (max-width: 720px) {
+  .Footer {
+    flex-direction: column;
+    position: static;
+  }
+}

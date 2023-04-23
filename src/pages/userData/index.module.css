@@ -1,0 +1,52 @@
+.userDataForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.userDataList {
+    background-color: rgb(250, 240, 200);
+    border: 2px solid rgb(250, 250, 25);
+    width: 45%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 15px 15px rgb(200, 200, 150);
+}
+
+.pName {
+    margin: 1px;
+    padding: 0;
+    font-weight: bold;
+}
+
+.p {
+    margin: 1px;
+    padding: 0;
+}
+
+.imgAvatar {
+    max-height: 25vh;
+}
+
+.classForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.linkStyle {
+    color: blue;
+}
+
+.linkStyle:hover {
+    color: red;
+}

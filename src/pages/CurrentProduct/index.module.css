@@ -1,0 +1,62 @@
+.cardProduct {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imgCurrent {
+  max-height: 30vh;
+}
+
+.cardBody {
+  height: 12vh;
+  bottom: 0;
+  position: relative;
+}
+
+.pcardBody {
+  margin: 0;
+  padding: 0;
+}
+
+.cardAmount {
+  margin: 0;
+  padding: 0;
+  font-size: smaller;
+}
+
+.cardTitle {
+  margin: 0;
+  padding: 0;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.btnBin {
+  font-size: larger;
+  background-color: yellow;
+  height: 5vh;
+  border: transparent;
+  border-radius: 15px;
+  padding: 3px 10px;
+}
+
+.btnBin:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 8px 8px rgb(200, 200, 150);
+}
+
+@media (max-width: 520px) {
+  .imgCurrent {
+    background-size: 'cover';
+    max-width: 200px;
+    max-height: 120px;
+  }
+
+  .cardTitle {
+    font-size: medium;
+    font-weight: bold;
+  }
+}

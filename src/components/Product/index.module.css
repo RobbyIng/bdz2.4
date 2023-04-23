@@ -1,0 +1,84 @@
+.cardProduct {
+  margin: 3px;
+  width: 20vw;
+  height: 34vh;
+  padding: 3px;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.cardProduct:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 8px 8px rgb(200, 200, 150);
+}
+.cardMain {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.imgCardProduct {
+  max-width: 120px;
+  max-height: 15vh;
+}
+
+.cardBody {
+  height: 12vh;
+  bottom: 0;
+  position: relative;
+}
+
+.cardBody p {
+  margin: 0;
+  padding: 0;
+}
+
+.cardAmount {
+  font-size: smaller;
+}
+.cardTitle {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.addToBin {
+  font-weight: bold;
+  background-color: yellow;
+  height: 5vh;
+  border: transparent;
+  border-radius: 15px;
+  margin: 0;
+}
+
+.addToBin:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 8px 8px rgb(200, 200, 150);
+  cursor: grab;
+}
+
+@media (max-width: 720px) {
+  .cardProduct {
+    width: 45vw;
+  }
+}
+
+@media (max-width: 520px) {
+  .cardProduct {
+    width: 49vw;
+    height: 35vh;
+  }
+
+  .imgCardProduct {
+    background-size: 'cover';
+    max-width: 200px;
+    max-height: 120px;
+  }
+
+  .cardTitle {
+    font-size: medium;
+    font-weight: bold;
+  }
+}
