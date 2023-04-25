@@ -7,11 +7,13 @@ import { SignUp } from './pages/SignUp'
 import { Layout } from './Layout'
 import { Home } from './pages/Home'
 import { UserData } from './pages/userData'
-import { ProductList } from './components/ProductList'
 import { LikedList } from './pages/Liked'
 import { BasketList } from './pages/BasketList'
 import { CurrentProduct } from './pages/CurrentProduct'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
+import { ProductList } from './pages/ProductList'
 
 const queryClient = new QueryClient()
 
@@ -59,8 +61,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>
 )

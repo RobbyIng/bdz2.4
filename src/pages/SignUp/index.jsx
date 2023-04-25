@@ -1,11 +1,12 @@
 import { Formik, Field, Form } from 'formik'
 import * as Yup from 'yup'
 import { signInFetch, signUpFetch } from '../../api/user'
-import { TOKEN } from '../../utils/constants'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import styles from './index.module.css'
 import { useMutation } from '@tanstack/react-query'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUpUser } from '../../redux/slices/userSlice'
 
 const signUpSchema = Yup.object().shape({
   email: Yup.string().email('Некорректный email').required('Required'),
@@ -15,11 +16,13 @@ const signUpSchema = Yup.object().shape({
 
 export const SignUp = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { token } = useSelector((state) => state.user)
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN)
     if (token) navigate('/products')
-  }, [navigate])
+  }, [navigate, token])
 
   const initialValuesSignUp = {
     email: '',
@@ -35,7 +38,6 @@ export const SignUp = () => {
   } = useMutation({
     mutationFn: async (values) => {
       const res = await signUpFetch(values)
-      if (res.status) console.log(res.status)
       if (res.ok) {
         const responce = await res.json()
         return responce
@@ -68,11 +70,9 @@ export const SignUp = () => {
     const res = await mutateSignUp(values)
     if (res) {
       const { group, ...valuesSignIn } = values
-      console.log(valuesSignIn)
       const resIn = await mutateSignIn(valuesSignIn)
       if (resIn) {
-        localStorage.setItem(TOKEN, resIn.token)
-
+        dispatch(setUpUser({ ...resIn.data, token: resIn.token }))
         return navigate('/products')
       }
       return navigate('/signin')

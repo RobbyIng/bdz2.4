@@ -1,18 +1,8 @@
-import { useNavigate } from 'react-router-dom'
 import styles from './index.module.css'
-import { useEffect } from 'react'
-import { TOKEN } from '../../utils/constants'
+import { useAuth } from '../../hooks/useAuth'
 
 export const LikedList = () => {
-    const navigate = useNavigate()
+  const { token } = useAuth()
 
-    useEffect(() => {
-        const token = localStorage.getItem(TOKEN)
-        if (!token) navigate('/')
-      }, [navigate])
-
-
-    return (
-        <h1 className={styles.userDataForm}>Список избраных товаров</h1>
-    )
+  return <h1 className={styles.userDataForm}>Список избраных товаров</h1>
 }

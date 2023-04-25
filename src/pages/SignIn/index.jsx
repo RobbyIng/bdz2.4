@@ -1,11 +1,12 @@
 import { Formik, Field, Form } from 'formik'
 import * as Yup from 'yup'
 import { signInFetch } from '../../api/user'
-import { TOKEN } from '../../utils/constants'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import styles from './index.module.css'
 import { useMutation } from '@tanstack/react-query'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUpUser } from '../../redux/slices/userSlice'
 
 const signInSchema = Yup.object().shape({
   email: Yup.string().email('Некорректный email').required('Required'),
@@ -14,11 +15,13 @@ const signInSchema = Yup.object().shape({
 
 export const SignIn = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { token } = useSelector((state) => state.user)
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN)
     if (token) navigate('/products')
-  }, [navigate])
+  }, [navigate, token])
 
   const initialValues = {
     email: '',
@@ -41,7 +44,7 @@ export const SignIn = () => {
   const onSubmit = async (values) => {
     const res = await mutateAsync(values)
     if (res) {
-      localStorage.setItem(TOKEN, res.token)
+      dispatch(setUpUser({ ...res.data, token: res.token }))
       return navigate('/products')
     }
 

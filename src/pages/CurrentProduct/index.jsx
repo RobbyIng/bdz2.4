@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import styles from './index.module.css'
-import { TOKEN } from '../../utils/constants'
 import { fetchCurrentProduct } from '../../api/products'
 import { useQuery } from '@tanstack/react-query'
+import { useSelector } from 'react-redux'
 
 export const CurrentProduct = () => {
   const { idOfProduct } = useParams()
 
   const navigate = useNavigate()
+
+  const { token } = useSelector((state) => state.user)
 
   const {
     data: prodCurrentItem,
@@ -17,7 +19,6 @@ export const CurrentProduct = () => {
   } = useQuery({
     queryKey: ['getCurrentProduct'],
     queryFn: () => {
-      const token = localStorage.getItem(TOKEN)
       const responce = fetchCurrentProduct(token, idOfProduct)
       return responce
     },
