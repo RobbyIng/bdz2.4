@@ -1,24 +1,18 @@
-import { useEffect } from 'react'
-import { ProductItem } from '../Product'
+import { ProductItem } from '../../components/Product'
 import './index.css'
-import { fetchDataProducts } from '../../api/products'
-import { TOKEN } from '../../utils/constants'
-import { useNavigate } from 'react-router-dom'
+import { fetchSearchProducts } from '../../api/products'
 import { useQuery } from '@tanstack/react-query'
+import { useSelector } from 'react-redux'
+import { useAuth } from '../../hooks/useAuth'
 
 export const ProductList = () => {
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    const token = localStorage.getItem(TOKEN)
-    if (!token) navigate('/')
-  }, [navigate])
+  const { token } = useAuth()
+  const { search } = useSelector((state) => state.filter)
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['getAllProduct'],
+    queryKey: ['getAllProduct', search],
     queryFn: () => {
-      const token = localStorage.getItem(TOKEN)
-      const responce = fetchDataProducts(token)
+      const responce = fetchSearchProducts(token, search)
       return responce
     },
     // enabled:  !!token
@@ -29,7 +23,7 @@ export const ProductList = () => {
   if (data)
     return (
       <div className="cardProductList">
-        {data.products.map((productItem) => {
+        {data.map((productItem) => {
           return <ProductItem key={productItem._id} productItem={productItem} />
         })}
       </div>

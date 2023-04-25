@@ -7,6 +7,18 @@ export const fetchDataProducts = async (token) => {
   const responce = await res.json()
   return responce
 }
+export const fetchSearchProducts = async (token, search) => {
+  const res = await fetch(
+    `https://api.react-learning.ru/products/search?query=${search}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  )
+  const responce = await res.json()
+  return responce
+}
 // }
 
 export const fetchCurrentProduct = async (token, params) => {

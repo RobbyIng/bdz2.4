@@ -1,22 +1,25 @@
 import { userDataFetch } from '../../api/user'
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import styles from './index.module.css'
-import { TOKEN } from '../../utils/constants'
 import { useQuery } from '@tanstack/react-query'
+import { useDispatch } from 'react-redux'
+import { cleanUser } from '../../redux/slices/userSlice'
+import { useAuth } from '../../hooks/useAuth'
 
 export const UserData = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const token = localStorage.getItem(TOKEN)
-    if (!token) navigate('/')
-  }, [navigate])
+  const { token } = useAuth()
+
+  const handleExit = () => {
+    dispatch(cleanUser())
+    return navigate('/')
+  }
 
   const { data, isError, isLoading, error } = useQuery({
     queryKey: ['getUserData'],
     queryFn: async () => {
-      const token = localStorage.getItem(TOKEN)
       const res = await userDataFetch(token)
       return res.ok ? await res.json() : res
     },
@@ -41,9 +44,7 @@ export const UserData = () => {
           id="exit"
           className={styles.linkStyle}
           to="/"
-          onClick={() => {
-            localStorage.removeItem(TOKEN)
-          }}
+          onClick={handleExit}
         >
           Выход из сервисов
         </Link>

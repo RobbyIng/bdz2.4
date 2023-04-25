@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import styles from './index.module.css'
 import React from 'react'
 import { navLinkMass } from '../../utils/constants'
+import { Search } from '../../components/Search'
 
 const Header = () => {
   return (
@@ -17,14 +18,7 @@ const Header = () => {
           </NavLink>
         </h1>
       </div>
-      {/* <div className="search"> */}
-      <input
-        type="text"
-        id="product"
-        className={styles.search}
-        placeholder="Введите наименование продукта"
-      />
-      {/* </div> */}
+      <Search />
       <nav className={styles.navigationWrapper}>
         <ul className={styles.navigation}>
           {navLinkMass.map((elemLink) => {
